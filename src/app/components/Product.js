@@ -11,12 +11,21 @@ export default function Product(props) {
     props.onQuantityChange(newProductData);
   }
 
+  function onProductClick() {
+    props.onProductClick(product.id);
+  }
+
   if (!product) {
     return <div>Not product information found...</div>;
   }
 
   return (
-    <div className="pl-5 pr-5 pt-8 pb-8 flex flex-col items-center justify-center gap-6 cursor-pointer">
+    <div
+      onClick={onProductClick}
+      className={`pl-5 pr-5 pt-8 pb-8 flex flex-col items-center justify-center gap-6 cursor-pointer ${
+        props.isSelected ? "bg-neutral-300" : "bg-white"
+      }`}
+    >
       <div className="w-full flex flex-col gap-6">
         <div className="w-full h-20 bg-black rounded-xl flex justify-center items-end">
           <Image

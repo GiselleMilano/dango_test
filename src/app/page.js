@@ -62,10 +62,23 @@ export default function Home() {
       quantity: 6,
     },
   ]);
+  const [productId, setProductId] = useState(null);
 
   function onQuantityChange(product) {
     const newProductList = products.map((productOld) => {
       return productOld.id == product.id ? product : productOld;
+    });
+    setProducts(newProductList);
+  }
+
+  function onProductClick(productId) {
+    setProductId(productId);
+  }
+
+  function onChangeTitle(title) {
+    const newProductList = products.map((productOld) => {
+      const newProduct = { ...productOld, title };
+      return productOld.id === productId ? newProduct : productOld;
     });
     setProducts(newProductList);
   }
@@ -80,7 +93,11 @@ export default function Home() {
           <div className="w-[450px] flex flex-col justify-start items-start gap-3 p-2">
             <div className="w-full flex flex-row gap-3">
               <p className="w-40">Title:</p>
-              <TitleInput />
+              <TitleInput
+                productId={productId}
+                products={products}
+                onChangeTitle={onChangeTitle}
+              />
             </div>
             <div className="w-full flex flex-row items-center gap-3">
               <label className="w-40" htmlFor="default-range">
@@ -96,6 +113,8 @@ export default function Home() {
             <ProductList
               products={products}
               onQuantityChange={onQuantityChange}
+              onProductClick={onProductClick}
+              productIdSelected={productId}
             />
           </div>
           <div className="w-full flex justify-center">
