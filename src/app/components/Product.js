@@ -3,7 +3,14 @@ import React from "react";
 import Image from "next/image";
 import QuantityInput from "./QuantityInput";
 
-export default function Product({ product }) {
+export default function Product(props) {
+  const product = props.product;
+
+  function onQuantityChange(quantity) {
+    const newProductData = { ...product, quantity: quantity };
+    props.onQuantityChange(newProductData);
+  }
+
   if (!product) {
     return <div>Not product information found...</div>;
   }
@@ -27,7 +34,10 @@ export default function Product({ product }) {
       <div className="flex flex-col gap-3">
         <div className="w-full flex flex-row gap-2 items-center">
           <p className="font-bold text-base">${product.price}</p>
-          <QuantityInput quantity={product.quantity} />
+          <QuantityInput
+            quantity={product.quantity}
+            onQuantityChange={onQuantityChange}
+          />
         </div>
         <p className="w-full h-24 text-clip text-neutral-600 overflow-hidden text-xs text-left">
           {product.description}

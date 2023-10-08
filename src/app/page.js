@@ -63,6 +63,13 @@ export default function Home() {
     },
   ]);
 
+  function onQuantityChange(product) {
+    const newProductList = products.map((productOld) => {
+      return productOld.id == product.id ? product : productOld;
+    });
+    setProducts(newProductList);
+  }
+
   return (
     <main className="w-full h-full">
       <div className="flex flex-row gap-8 mt-8 ml-8">
@@ -86,7 +93,10 @@ export default function Home() {
 
         <div className="flex justify-center flex-col items-center gap-8">
           <div className="w-full h-full flex flex-col justify-center items-center">
-            <ProductList products={products} />
+            <ProductList
+              products={products}
+              onQuantityChange={onQuantityChange}
+            />
           </div>
           <div className="w-full flex justify-center">
             <hr className="w-full mt-4 mb-4 border-b-1 border-black" />
