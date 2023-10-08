@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ProductList from "./components/ProductList";
 import TotalQuantityProducts from "./components/TotalQuantityProducts";
+import TitleInput from "./components/TitleInput";
 
 export default function Home() {
   const [products, setProducts] = useState([
@@ -63,15 +64,29 @@ export default function Home() {
 
   return (
     <main className="w-full h-full">
-      <div className="flex justify-center flex-col items-center gap-8">
-        <div className="w-full h-full flex flex-col justify-center items-center">
-          <ProductList products={products} />
+      <div className="flex flex-row gap-8 mt-8 ml-8">
+        <div className="flex flex-col justify-start items-start gap-2 border border-neutral-600">
+          <div className="w-full flex flex-row justify-center items-center border-b border-neutral-600 p-2">
+            <h1 className="text-xl">Edit Product</h1>
+          </div>
+          <div className="w-[450px] flex flex-col justify-start items-start gap-3 p-2">
+            <div className="w-full flex flex-row gap-3">
+              <p className="w-40">Product Title:</p>
+              <TitleInput />
+            </div>
+          </div>
         </div>
-        <div className="w-full flex justify-center">
-          <hr className="w-full mt-4 mb-4 border-b-1 border-black" />
-        </div>
-        <div className="w-full flex justify-end">
-          <TotalQuantityProducts products={products} />
+
+        <div className="flex justify-center flex-col items-center gap-8">
+          <div className="w-full h-full flex flex-col justify-center items-center">
+            <ProductList products={products} />
+          </div>
+          <div className="w-full flex justify-center">
+            <hr className="w-full mt-4 mb-4 border-b-1 border-black" />
+          </div>
+          <div className="w-full flex justify-end">
+            <TotalQuantityProducts products={products} />
+          </div>
         </div>
       </div>
     </main>
