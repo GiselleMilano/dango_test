@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import ProductList from "./components/ProductList";
+import TotalQuantityProducts from "./components/TotalQuantityProducts";
 
 export default function Home() {
   const [products, setProducts] = useState([
@@ -61,9 +62,17 @@ export default function Home() {
   ]);
 
   return (
-    <main className="w-full bg-neutral-50">
-      <div className="w-full h-full flex flex-col justify-center items-center">
-        <ProductList products={products} />
+    <main className="w-full h-full">
+      <div className="flex justify-center flex-col items-center gap-8">
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <ProductList products={products} />
+        </div>
+        <div className="w-full flex justify-center">
+          <hr className="w-full mt-4 mb-4 border-b-1 border-black" />
+        </div>
+        <div className="w-full flex justify-end">
+          <TotalQuantityProducts products={products} />
+        </div>
       </div>
     </main>
   );
