@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import QuantityInput from "./QuantityInput";
 
 export default function Product({ product }) {
   if (!product) {
@@ -8,7 +9,7 @@ export default function Product({ product }) {
   }
 
   return (
-    <div className="pl-5 pr-5 pt-8 pb-8 flex flex-col items-center justify-center gap-6">
+    <div className="pl-5 pr-5 pt-8 pb-8 flex flex-col items-center justify-center gap-6 cursor-pointer">
       <div className="w-full flex flex-col gap-6">
         <div className="w-full h-20 bg-black rounded-xl flex justify-center items-end">
           <Image
@@ -26,11 +27,7 @@ export default function Product({ product }) {
       <div className="flex flex-col gap-3">
         <div className="w-full flex flex-row gap-2 items-center">
           <p className="font-bold text-base">${product.price}</p>
-          <input
-            size={2}
-            defaultValue={product.quantity}
-            className="border border-neutral-600 text-center text-neutral-600 text-xs"
-          />
+          <QuantityInput quantity={product.quantity} />
         </div>
         <p className="w-full h-24 text-clip text-neutral-600 overflow-hidden text-xs text-left">
           {product.description}
