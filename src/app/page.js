@@ -3,6 +3,7 @@ import { useState } from "react";
 import ProductList from "./components/ProductList";
 import TotalQuantityProducts from "./components/TotalQuantityProducts";
 import TitleInput from "./components/TitleInput";
+import TitleFontSize from "./components/TitleFontSize";
 
 export default function Home() {
   const [products, setProducts] = useState([
@@ -71,8 +72,14 @@ export default function Home() {
           </div>
           <div className="w-[450px] flex flex-col justify-start items-start gap-3 p-2">
             <div className="w-full flex flex-row gap-3">
-              <p className="w-40">Product Title:</p>
+              <p className="w-40">Title:</p>
               <TitleInput />
+            </div>
+            <div className="w-full flex flex-row items-center gap-3">
+              <label className="w-40" htmlFor="default-range">
+                Title Font Size:
+              </label>
+              <TitleFontSize />
             </div>
           </div>
         </div>
