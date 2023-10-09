@@ -105,9 +105,9 @@ export default function Home() {
             <div className="w-full flex flex-row justify-center items-center border-b-2 border-neutral-600 p-2">
               <h1 className="text-xl">Edit Product</h1>
             </div>
-            <div className="w-[450px] flex flex-col justify-start items-start gap-3 p-2">
+            <div className="flex flex-col justify-start items-start gap-3 p-2">
               <div className="w-full flex flex-row gap-3">
-                <p className="w-40">Title:</p>
+                <p>Title:</p>
                 <TitleInput
                   productId={productId}
                   products={products}
@@ -115,9 +115,7 @@ export default function Home() {
                 />
               </div>
               <div className="w-full flex flex-row items-center gap-3">
-                <label className="w-40" htmlFor="default-range">
-                  Title Font Size:
-                </label>
+                <label htmlFor="default-range">Title Font Size:</label>
                 <TitleFontSize
                   products={products}
                   productId={productId}

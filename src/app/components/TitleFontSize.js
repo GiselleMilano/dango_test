@@ -28,7 +28,7 @@ export default function TitleFontSize(props) {
         value={inputValue}
         disabled={disabled}
         onChange={onChangeFontSize}
-        className="w-52 h-2 rounded-lg appearance-none cursor-pointer bg-neutral-600"
+        className="h-2 rounded-lg appearance-none cursor-pointer bg-neutral-600"
       />
       <p>{inputValue}</p>
     </div>

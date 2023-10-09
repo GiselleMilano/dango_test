@@ -24,7 +24,7 @@ export default function TitleInput(props) {
   return (
     <input
       type="text"
-      className="w-52 border border-neutral-600 text-center text-neutral-600 rounded-sm"
+      className="border border-neutral-600 text-center text-neutral-600 rounded-sm"
       value={inputValue}
       disabled={disabled}
       placeholder="new title..."
