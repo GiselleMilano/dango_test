@@ -7,10 +7,6 @@ export default function ProductList(props) {
     props.onQuantityChange(product);
   }
 
-  function onProductClick(productId) {
-    props.onProductClick(productId);
-  }
-
   if (props.products.length < 1 || props.products === null) {
     return <ul>No products to show...</ul>;
   }
@@ -18,13 +14,16 @@ export default function ProductList(props) {
   return (
     <ul className="grid grid-cols-4 gap-3">
       {props.products.map((product) => (
-        <li key={product.id} className="w-48 border-2 border-black">
-          <Product
-            product={product}
-            onQuantityChange={onQuantityChange}
-            onProductClick={onProductClick}
-            isSelected={product.id === props.productIdSelected}
-          />
+        <li
+          key={product.id}
+          onClick={() => props.onProductClick(product.id)}
+          className={`w-48 border-2 cursor-pointer border-neutral-600 ${
+            props.productIdSelected === product.id
+              ? "bg-neutral-300"
+              : "bg-white"
+          }`}
+        >
+          <Product product={product} onQuantityChange={onQuantityChange} />
         </li>
       ))}
     </ul>

@@ -15,6 +15,7 @@ export default function Home() {
       description:
         "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
       quantity: 1,
+      fontSize: 16,
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ export default function Home() {
       description:
         "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
       quantity: 2,
+      fontSize: 16,
     },
     {
       id: 3,
@@ -33,6 +35,7 @@ export default function Home() {
       description:
         "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
       quantity: 3,
+      fontSize: 16,
     },
     {
       id: 4,
@@ -42,6 +45,7 @@ export default function Home() {
       description:
         "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
       quantity: 4,
+      fontSize: 16,
     },
     {
       id: 5,
@@ -51,6 +55,7 @@ export default function Home() {
       description:
         "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
       quantity: 5,
+      fontSize: 16,
     },
     {
       id: 6,
@@ -60,6 +65,7 @@ export default function Home() {
       description:
         "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
       quantity: 6,
+      fontSize: 16,
     },
   ]);
   const [productId, setProductId] = useState(null);
@@ -83,47 +89,53 @@ export default function Home() {
     setProducts(newProductList);
   }
 
+  function onChangeFontSize(fontSize) {
+    const newProductList = products.map((productOld) => {
+      const newProduct = { ...productOld, fontSize };
+      return productOld.id === productId ? newProduct : productOld;
+    });
+    setProducts(newProductList);
+  }
+
   return (
     <main className="w-full h-full">
       <div className="flex flex-row gap-8 mt-8 ml-8">
-        <div className="flex flex-col justify-start items-start gap-2 border border-neutral-600">
-          <div className="w-full flex flex-row justify-center items-center border-b border-neutral-600 p-2">
-            <h1 className="text-xl">Edit Product</h1>
-          </div>
-          <div className="w-[450px] flex flex-col justify-start items-start gap-3 p-2">
-            <div className="w-full flex flex-row gap-3">
-              <p className="w-40">Title:</p>
-              <TitleInput
-                productId={productId}
-                products={products}
-                onChangeTitle={onChangeTitle}
-              />
+        <div className="flex flex-col justify-start items-start gap-2">
+          <div className="gap-2 border-2 border-neutral-600">
+            <div className="w-full flex flex-row justify-center items-center border-b-2 border-neutral-600 p-2">
+              <h1 className="text-xl">Edit Product</h1>
             </div>
-            <div className="w-full flex flex-row items-center gap-3">
-              <label className="w-40" htmlFor="default-range">
-                Title Font Size:
-              </label>
-              <TitleFontSize />
+            <div className="w-[450px] flex flex-col justify-start items-start gap-3 p-2">
+              <div className="w-full flex flex-row gap-3">
+                <p className="w-40">Title:</p>
+                <TitleInput
+                  productId={productId}
+                  products={products}
+                  onChangeTitle={onChangeTitle}
+                />
+              </div>
+              <div className="w-full flex flex-row items-center gap-3">
+                <label className="w-40" htmlFor="default-range">
+                  Title Font Size:
+                </label>
+                <TitleFontSize
+                  products={products}
+                  productId={productId}
+                  onChangeFontSize={onChangeFontSize}
+                />
+              </div>
             </div>
-          </div>
-        </div>
-
-        <div className="flex justify-center flex-col items-center gap-8">
-          <div className="w-full h-full flex flex-col justify-center items-center">
-            <ProductList
-              products={products}
-              onQuantityChange={onQuantityChange}
-              onProductClick={onProductClick}
-              productIdSelected={productId}
-            />
-          </div>
-          <div className="w-full flex justify-center">
-            <hr className="w-full mt-4 mb-4 border-b-1 border-black" />
           </div>
           <div className="w-full flex justify-end">
             <TotalQuantityProducts products={products} />
           </div>
         </div>
+        <ProductList
+          products={products}
+          onQuantityChange={onQuantityChange}
+          onProductClick={onProductClick}
+          productIdSelected={productId}
+        />
       </div>
     </main>
   );
